@@ -28,4 +28,8 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \porshkevich\googleanalytics\AutoloadExample::widget(); ?>```
+'ga'=>[
+	'class'=>'porshkevich\googleanalytics\GoogleAnalyticsAPI',
+	'defaultTrackingId' => 'UA-XXXXXXXX-X',
+]
+```
