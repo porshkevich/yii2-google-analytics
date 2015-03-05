@@ -74,6 +74,10 @@ class GoogleAnalyticsAPI extends Component {
 		$this->register($event->sender);
 	}
 
+	/**
+	 *
+	 * @param View $view
+	 */
 	public function register($view)
 	{
 		$js = "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -93,6 +97,8 @@ class GoogleAnalyticsAPI extends Component {
 			$js .= "ga('set', " . Json::encode($this->_sets) . ");";
 		if ($this->_sends)
 			$js .= implode("\n", $this->_sends);
+
+		$view->registerJs($js, View::POS_HEAD, 'ga');
 	}
 
 	public function set($key, $value = null)
