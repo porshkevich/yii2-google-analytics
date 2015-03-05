@@ -58,7 +58,7 @@ class GoogleAnalyticsAPI extends Component {
 		if ($this->autoreg) {
 			$view = Yii::$app->view;
 			if ($view instanceof View) {
-				$view->on(View::EVENT_BEFORE_RENDER, [$this,'register']);
+				$view->on(View::EVENT_BEFORE_RENDER, [$this,'viewBeforeRenderHandler']);
 			}
 		}
 
