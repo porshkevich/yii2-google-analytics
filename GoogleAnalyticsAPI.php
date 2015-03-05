@@ -88,9 +88,9 @@ class GoogleAnalyticsAPI extends Component {
 		if ($this->useUserId && !Yii::$app->user->isGuest)
 			$this->defaultTrackingOpts['userId'] = 'gauid_'.Yii::$app->user->id;
 
-		$opts = !$this->defaultTrackingOpts?:', ' . Json::encode($this->defaultTrackingId);
+		$opts = $this->defaultTrackingOpts?', ' . Json::encode($this->defaultTrackingOpts):'';
 
-		$js .= "ga('create', '<?= {$this->defaultTrackingId} ?>', 'auto'$opts);";
+		$js .= "ga('create', '{$this->defaultTrackingId}', 'auto'$opts);";
 		if ($this->_plugins)
 			$js .= implode("\n", $this->_plugins);
 		if ($this->_sets)
@@ -145,7 +145,7 @@ class GoogleAnalyticsAPI extends Component {
 
 	public function requirePlugin($name, $options)
 	{
-		$opts = !$options?:', ' . Json::encode($options);
+		$opts = $options?', ' . Json::encode($options):'';
 		$this->_plugins[] = "ga('require','$name'$opts);";
 	}
 }
