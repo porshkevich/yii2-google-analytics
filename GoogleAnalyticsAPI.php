@@ -71,7 +71,8 @@ class GoogleAnalyticsAPI extends Component {
 	 */
 	public function viewBeforeRenderHandler($event)
 	{
-		$this->register($event->sender);
+		if (!Yii::$app->request->isAjax)
+			$this->register($event->sender);
 	}
 
 	/**
